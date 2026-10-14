@@ -138,16 +138,16 @@ public abstract class HeldItemRendererMixin {
       float i = 0.4F * Mth.sin(g * (float) (Math.PI * 2));
       float j = -0.4F * Mth.sin(swingProgress * (float) Math.PI);
       matrices.translate(f * (h + 0.64000005F), i + -0.6F + equipProgress * -0.6F, j + -0.71999997F);
-      matrices.mulPose(Axis.YP.rotationDegrees(f * 45.0F));
+      matrices.rotateDegrees(Axis.YP, f * 45.0F);
       float k = Mth.sin(swingProgress * swingProgress * (float) Math.PI);
       float l = Mth.sin(g * (float) Math.PI);
-      matrices.mulPose(Axis.YP.rotationDegrees(f * l * 70.0F));
-      matrices.mulPose(Axis.ZP.rotationDegrees(f * k * -20.0F));
+      matrices.rotateDegrees(Axis.YP, f * l * 70.0F);
+      matrices.rotateDegrees(Axis.ZP, f * k * -20.0F);
       AbstractClientPlayer abstractClientPlayerEntity = this.minecraft.player;
       matrices.translate(f * -1.0F, 3.6F, 3.5F);
-      matrices.mulPose(Axis.ZP.rotationDegrees(f * 120.0F));
-      matrices.mulPose(Axis.XP.rotationDegrees(200.0F));
-      matrices.mulPose(Axis.YP.rotationDegrees(f * -135.0F));
+      matrices.rotateDegrees(Axis.ZP, f * 120.0F);
+      matrices.rotateDegrees(Axis.XP, 200.0F);
+      matrices.rotateDegrees(Axis.YP, f * -135.0F);
       matrices.translate(f * 5.6F, 0.0F, 0.0F);
    }
 
@@ -653,7 +653,7 @@ public abstract class HeldItemRendererMixin {
             if (item.has(DataComponents.MAP_ID)) {
                matrices.pushPose();
                matrices.translate(-0.05 * l, 0.2, 0.1);
-               matrices.mulPose(Axis.YP.rotationDegrees(-12 * l));
+               matrices.rotateDegrees(Axis.YP, -12 * l);
                this.renderMap(matrices, orderedRenderCommandQueue, light, item);
                matrices.popPose();
             } else {

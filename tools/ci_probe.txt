@@ -1,3 +1,24 @@
 # Classes to javap in CI diagnostics (one fully qualified name per line).
-com.mojang.blaze3d.vertex.PoseStack
-com.mojang.blaze3d.vertex.PoseStack$Pose
+com.mojang.blaze3d.platform.InputConstants
+com.mojang.blaze3d.platform.Window
+com.mojang.blaze3d.Blaze3D
+com.mojang.blaze3d.vertex.VertexConsumer
+net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer
+net.minecraft.client.player.FirstPersonHandsAndItems
+net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState
+net.minecraft.client.renderer.RenderPipelines
+net.minecraft.client.renderer.BindGroupLayouts
+net.minecraft.client.renderer.rendertype.RenderType
+net.minecraft.client.renderer.rendertype.RenderTypes
+net.minecraft.client.renderer.rendertype.RenderSetup
+net.minecraft.client.renderer.rendertype.RenderSetup$RenderSetupBuilder
+net.minecraft.client.renderer.state.GameRenderState
+net.minecraft.client.renderer.feature.ItemFeatureRenderer
+net.minecraft.client.renderer.feature.RenderTypeFeatureRenderer
+net.minecraft.client.resources.model.geometry.BakedQuad
+net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo
+net.minecraft.client.player.LocalPlayer
+net.minecraft.client.renderer.GameRenderer
+net.minecraft.client.Camera
+net.minecraft.client.Minecraft
+net.minecraft.world.entity.LivingEntity

@@ -46,17 +46,17 @@ public class M {
 
    @Safe
    public void rotateX(PoseStack matrices, double amount) {
-      matrices.mulPose(Axis.XP.rotationDegrees((float)amount));
+      matrices.rotateDegrees(Axis.XP, (float)amount);
    }
 
    @Safe
    public void rotateY(PoseStack matrices, double amount) {
-      matrices.mulPose(Axis.YP.rotationDegrees((float)amount));
+      matrices.rotateDegrees(Axis.YP, (float)amount);
    }
 
    @Safe
    public void rotateZ(PoseStack matrices, double amount) {
-      matrices.mulPose(Axis.ZP.rotationDegrees((float)amount));
+      matrices.rotateDegrees(Axis.ZP, (float)amount);
    }
 
    @Safe

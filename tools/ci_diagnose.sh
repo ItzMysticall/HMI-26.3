@@ -17,7 +17,7 @@ done < <(find "$HOME/.gradle" "$GITHUB_WORKSPACE" -name '*.jar' -size +5M 2>/dev
 echo "MC jar: $MC" > "$out/mc_jar.txt"
 
 if [ -n "$MC" ]; then
-  unzip -l "$MC" | awk '{print $4}' | grep '\.class$' | grep -E '^(net/minecraft/client|com/mojang/blaze3d)' | sort > "$out/classes.txt"
+  unzip -l "$MC" | awk '{print $4}' | grep '\.class$' | sort > "$out/classes.txt"
   : > "$out/javap.txt"
   while IFS= read -r cls; do
     [ -z "$cls" ] && continue
