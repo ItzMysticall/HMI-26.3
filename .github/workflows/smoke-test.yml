@@ -29,7 +29,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq xvfb mesa-vulkan-drivers libgl1-mesa-dri libglx-mesa0 vulkan-tools \
-            libxrandr2 libxcursor1 libxi6 libxxf86vm1 libopenal1 libxkbcommon0 || true
+            libxrandr2 libxcursor1 libxi6 libxxf86vm1 libopenal1 libxkbcommon0 imagemagick || true
           vulkaninfo --summary 2>&1 | head -20 || true
 
       - name: Run client
@@ -37,13 +37,22 @@ jobs:
         shell: bash
         env:
           LIBGL_ALWAYS_SOFTWARE: "1"
+          # Makes Mixin write every class it transforms to run/.mixin.out, which shows what applied.
+          JAVA_TOOL_OPTIONS: "-Dmixin.debug.export=true"
         run: |
           set +e
           chmod +x gradlew
-          # Let the client run up to 6 minutes, then stop it. Reaching the timeout means it stayed up.
-          timeout -k 20 360 xvfb-run -a -s "-screen 0 1280x720x24" ./gradlew runClient --no-daemon > ../client-gradle.log 2>&1
-          echo "exit=$?" > ../client-exit.txt
-          pkill -f minecraft || true
+          xvfb-run -a -s "-screen 0 1280x720x24" bash -c '
+            ./gradlew runClient --no-daemon > ../client-gradle.log 2>&1 &
+            GP=$!
+            sleep 120
+            import -window root ../shot1.png
+            sleep 75
+            import -window root ../shot2.png
+            pkill -f KnotClient; pkill -f devlaunchinjector; kill $GP 2>/dev/null
+            sleep 5
+          '
+          echo "done" > ../client-exit.txt
           true
 
       - name: Collect logs
@@ -54,7 +63,8 @@ jobs:
         run: |
           set +e
           out=$(mktemp -d)
-          cp client-gradle.log client-exit.txt "$out"/ 2>/dev/null
+          cp client-gradle.log client-exit.txt shot1.png shot2.png "$out"/ 2>/dev/null
+          find mod/run/.mixin.out -name '*.class' 2>/dev/null | sed 's#.*/\.mixin\.out/class/##' | sort > "$out/mixin-exported.txt"
           cp mod/run/logs/latest.log "$out"/latest.log 2>/dev/null
           cp -r mod/run/crash-reports "$out"/ 2>/dev/null
           vulkaninfo --summary > "$out/vulkaninfo.txt" 2>&1
