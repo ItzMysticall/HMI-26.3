@@ -43,6 +43,12 @@ jobs:
             exit "$status"
           fi
 
+      - name: Collect diagnostics on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash tools/ci_diagnose.sh
+
       - name: Pick the jar
         id: jar
         run: |
