@@ -1,3 +1,14 @@
+# Hold My Items — Minecraft 26.3 build (unofficial)
+
+> **Download:** grab the jar from the [Releases](../../releases) page and put it in your
+> `mods/` folder. Needs Minecraft **26.3**, Fabric Loader 0.19.3+, Fabric API and Java 25.
+>
+> **Status:** this is the 26.2 port with its version pins moved to 26.3 (Minecraft, Fabric
+> API, pack format). It has **not been play-tested on 26.3** — if 26.3 changed any rendering
+> code the mod hooks into, it may crash on launch. Please open an issue with the log.
+>
+> The notes below describe the earlier 26.2 port this is based on.
+
 # Hold My Items — Minecraft 26.2 port (unofficial)
 
 An unofficial port of **[Hold My Items](https://modrinth.com/mod/hold-my-items) 5.1.1** by
