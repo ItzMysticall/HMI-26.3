@@ -2,3 +2,4 @@
 net.minecraft.client.Minecraft|swing|6
 net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer|submitArmWithItem|3
 net.minecraft.client.renderer.GameRenderer|submitHandsWithItems|4
+net.minecraft.client.renderer.GameRenderer|prepareFrame|submitHandsWithItems|renderItemInHand|renderLevel|render3dHud|0
