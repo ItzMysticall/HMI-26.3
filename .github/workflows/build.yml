@@ -43,8 +43,8 @@ jobs:
             exit "$status"
           fi
 
-      - name: Collect diagnostics on failure
-        if: failure()
+      - name: Collect diagnostics
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: bash tools/ci_diagnose.sh
