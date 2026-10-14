@@ -27,6 +27,15 @@ if [ -n "$MC" ]; then
   done < tools/ci_probe.txt
 fi
 
+# Bytecode probes: class|regex|context-before
+: > "$out/bytecode.txt"
+while IFS='|' read -r cls rx ctx; do
+  [ -z "$cls" ] && continue
+  case "$cls" in \#*) continue;; esac
+  echo "===== $cls  /$rx/" >> "$out/bytecode.txt"
+  javap -c -p -cp "$MC" "$cls" 2>&1 | grep -nE -B"${ctx:-0}" "^  [A-Za-z<].*\).*;\$|${rx}" >> "$out/bytecode.txt"
+done < tools/ci_bytecode.txt
+
 # Where is GLFW (lwjgl) coming from, if anywhere?
 find "$HOME/.gradle" -name 'lwjgl*glfw*.jar' 2>/dev/null > "$out/glfw_jars.txt"
 

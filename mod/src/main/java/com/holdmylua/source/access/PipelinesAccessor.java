@@ -1,6 +1,6 @@
 package com.holdmylua.source.access;
 
-import com.mojang.blaze3d.pipeline.RenderPipeline;
+import com.mojang.renderpearl.api.pipeline.RenderPipeline;
 
 public interface PipelinesAccessor {
    RenderPipeline customP();

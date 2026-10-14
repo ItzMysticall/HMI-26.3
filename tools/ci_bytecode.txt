@@ -1,0 +1,6 @@
+# class|regex|context lines before each match
+net.minecraft.client.Minecraft|swing|4
+net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer|renderMap|8
+net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer|ItemStackRenderState|3
+net.minecraft.client.renderer.feature.ItemFeatureRenderer|invoke|0
+net.minecraft.client.renderer.GameRenderer|FirstPersonHands|3
