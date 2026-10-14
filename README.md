@@ -1,17 +1,14 @@
 # Hold My Items — Minecraft 26.3 build (unofficial)
 
-> **Status: does not build on 26.3 yet — no release available.**
-> This is the 26.2 port with its version pins moved to 26.3. Minecraft 26.3 changed the
-> renderer substantially (see "26.3 build errors" below), so the mod fails to compile and
-> needs a real port, not just a version bump. The CI workflow will publish a jar to
-> [Releases](../../releases) automatically once the build passes.
+> **Download:** the jar is on the [Releases](../../releases) page (marked pre-release). Put it in
+> your `mods/` folder. Needs Minecraft **26.3**, Fabric Loader 0.19.3+, Fabric API and Java 25.
 >
-> **26.3 build errors (from CI):**
-> - GLFW is gone (the client now uses SDL / Vulkan libraries) — `GLFW.glfwGetKey/glfwGetTime` callers
-> - `ItemInHandRenderer` → `FirstPersonHandsAndItemsRenderer` (first-person mixin target)
-> - `com.mojang.blaze3d.pipeline.RenderPipeline`, `BlendFunction`, `DepthStencilState`, ... no longer exist
-> - `OutputTarget` is gone; `PoseStack.mulPose(Quaternionf)` is now `rotate(...)`; `LivingEntity.swing` and
->   `submitModel` changed signatures
+> **Status: compiles on 26.3, not yet tested in-game.** The 26.2 port was migrated to the 26.3
+> renderer (GLFW removal, `ItemInHandRenderer` -> `FirstPersonHandsAndItemsRenderer`, the new
+> pipeline classes, new `swing` signature, `PoseStack` rotation methods). CI builds it and
+> checks the mixin targets against the real 26.3 jar, but nobody has launched the game with it
+> yet, so mixin failures or visual glitches are still possible. If it crashes, please open an
+> issue with `latest.log`.
 >
 > The notes below describe the earlier 26.2 port this is based on.
 

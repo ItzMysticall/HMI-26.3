@@ -1,3 +1,5 @@
 # class@regex@context lines before each match   (the separator is @ so the regex may contain |)
 net.minecraft.client.renderer.GameRenderer@prepareFrame|submitHandsWithItems|renderItemInHand|renderLevel|render3dHud|renderAllFeatures@0
 net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer@submitArmWithItem@3
+net.minecraft.client.Minecraft@swing@1
+net.minecraft.client.player.LocalPlayer@swing@0

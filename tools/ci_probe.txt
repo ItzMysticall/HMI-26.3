@@ -27,3 +27,5 @@ net.minecraft.client.renderer.feature.FeatureRenderDispatcher
 net.minecraft.client.renderer.item.properties.numeric.UseDuration
 net.minecraft.client.renderer.item.properties.conditional.IsUsingItem
 net.minecraft.client.renderer.rendertype.RenderType
+net.minecraft.client.player.LocalPlayer
+net.minecraft.world.entity.LivingEntity
