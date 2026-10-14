@@ -33,8 +33,13 @@ while IFS='|' read -r cls rx ctx; do
   [ -z "$cls" ] && continue
   case "$cls" in \#*) continue;; esac
   echo "===== $cls  /$rx/" >> "$out/bytecode.txt"
-  javap -c -p -cp "$MC" "$cls" 2>&1 | grep -nE -B"${ctx:-0}" "^  [A-Za-z<].*\).*;\$|${rx}" >> "$out/bytecode.txt"
+  python3 tools/bytecode_probe.py "$MC" "$cls" "$rx" "${ctx:-0}" >> "$out/bytecode.txt" 2>&1
 done < tools/ci_bytecode.txt
+
+# Mixin target audit against the real 26.3 jar.
+if [ -n "$MC" ]; then
+  python3 tools/audit_mixins.py "$MC" mod/src/main/java mod/src/main/resources/holdmyitems.mixins.json > "$out/audit.txt" 2>&1
+fi
 
 # Where is GLFW (lwjgl) coming from, if anywhere?
 find "$HOME/.gradle" -name 'lwjgl*glfw*.jar' 2>/dev/null > "$out/glfw_jars.txt"

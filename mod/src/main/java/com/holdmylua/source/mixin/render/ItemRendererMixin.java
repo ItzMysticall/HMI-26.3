@@ -8,7 +8,6 @@ import com.holdmylua.source.lua_runtime.ModelScriptCache;
 import com.holdmylua.source.lua_runtime.ScriptHolder;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.QuadInstance;
-import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.MatrixUtil;
 import net.minecraft.client.Minecraft;
@@ -16,9 +15,7 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.feature.ItemFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemStackRenderState.FoilType;
-import net.minecraft.client.renderer.rendertype.OutputTarget;
 import net.minecraft.client.renderer.rendertype.RenderType;
-import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -48,6 +45,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 // anymore — 26.2 removed the hanging-sign special renderer entirely. Held hanging signs
 // now flow through this item pipeline, so the damage-flash suppression is folded in
 // here: whenever the rendered item is a hanging sign, the overlay is dropped.
+// PORT-26.3: prepareSubmit(Submit, boolean foil) became prepareSubmit(Submit) and the separate
+// foil pass is gone: prepareMainSubmit now picks the quad's glint render type from
+// MaterialInfo.itemRenderType / itemGlintRenderType / itemGlintSpecialRenderType and submits the
+// quad with VertexConsumer.putBakedQuadWithGlint(pose, quad, quadInstance, decalPose). The
+// replacement below mirrors that logic while applying the per-quad Lua poses.
 @Mixin(ItemFeatureRenderer.class)
 public abstract class ItemRendererMixin {
    @Unique
@@ -77,25 +79,20 @@ public abstract class ItemRendererMixin {
    }
 
    @Inject(method = "prepareSubmit", at = @At("HEAD"), cancellable = true)
-   private void hmi$prepareSubmit(ItemFeatureRenderer.Submit submit, boolean foil, CallbackInfo ci) {
+   private void hmi$prepareSubmit(ItemFeatureRenderer.Submit submit, CallbackInfo ci) {
       if (!hmi$isHandContext(submit)) {
          return;
       }
 
-      if (foil) {
-         // pass 2: foil quads only — the scripts already ran in pass 1
-         hmi$renderFoil(submit);
-         GlobalsStorage.modelPartAnimator.clear();
+      // run the Lua model scripts once, then the main/outline quad loop
+      this.hmi$currentItem = DispatcherStorage.getRenderedItem();
+      hmi$runScripts();
+      if (submit.outlineColor() != 0) {
+         hmi$renderOutline(submit);
       } else {
-         // pass 1: run the Lua model scripts once, then the main/outline quad loop
-         this.hmi$currentItem = DispatcherStorage.getRenderedItem();
-         hmi$runScripts();
-         if (submit.outlineColor() != 0) {
-            hmi$renderOutline(submit);
-         } else {
-            hmi$renderMain(submit);
-         }
+         hmi$renderMain(submit);
       }
+      GlobalsStorage.modelPartAnimator.clear();
       ci.cancel();
    }
 
@@ -118,12 +115,22 @@ public abstract class ItemRendererMixin {
       // HangingSignMixin behaviour of suppressing the damage-flash overlay on them.
       quadInstance.setOverlayCoords(hmi$isHangingSign() ? OverlayTexture.NO_OVERLAY : submit.overlayCoords());
 
-      // PORT-26.2: the item translucent render type now writes depth (DepthStencilState.
-      // DEFAULT), so submitting quads in model order makes the translucent water (listed
-      // before the walls) occlude them — the back wall ends up depth-rejected and the
-      // bucket looks see-through. Submit opaque quads first (they write depth), then the
-      // translucent ones (blended on top), mirroring the 1.21.11 solid-then-translucent
-      // draw order. The pose index stays the quad's position in submit.quads().
+      FoilType foilType = submit.foilType();
+      PoseStack.Pose foilDecalPose = null;
+      if (foilType == FoilType.SPECIAL) {
+         // replicates ItemFeatureRenderer.computeFoilDecalPose
+         foilDecalPose = submit.pose().copy();
+         if (submit.displayContext() == ItemDisplayContext.GUI) {
+            MatrixUtil.mulComponentWise(foilDecalPose.pose(), 0.5F);
+         } else if (submit.displayContext().firstPerson()) {
+            MatrixUtil.mulComponentWise(foilDecalPose.pose(), 0.75F);
+         }
+      }
+
+      // PORT-26.2: the item translucent render type writes depth, so submitting quads in model
+      // order makes the translucent water (listed before the walls) occlude them. Submit opaque
+      // quads first, then the translucent ones. The pose index stays the quad's position in
+      // submit.quads().
       for (int pass = 0; pass < 2; pass++) {
          boolean translucentPass = pass == 1;
          PoseStack posed = new PoseStack();
@@ -134,12 +141,21 @@ public abstract class ItemRendererMixin {
                index++;
                continue;
             }
-            RenderType renderType = material.itemRenderType();
+            RenderType renderType = switch (foilType) {
+               case NONE -> material.itemRenderType();
+               case STANDARD -> material.itemGlintRenderType();
+               case SPECIAL -> material.itemGlintSpecialRenderType();
+            };
             quadInstance.setColor(material.isTinted() ? hmi$getTint(submit.tintLayers(), material.tintIndex()) : -1);
             posed.pushPose();
             posed.last().set(submit.pose());
             GlobalsStorage.modelPartAnimator.applyPoses(index, posed);
-            this.hmi$vertexBuilder(renderType).putBakedQuad(posed.last(), quad, quadInstance);
+            VertexConsumer consumer = this.hmi$vertexBuilder(renderType);
+            if (foilType == FoilType.NONE) {
+               consumer.putBakedQuad(posed.last(), quad, quadInstance);
+            } else {
+               consumer.putBakedQuadWithGlint(posed.last(), quad, quadInstance, foilDecalPose);
+            }
             posed.popPose();
             index++;
          }
@@ -164,48 +180,6 @@ public abstract class ItemRendererMixin {
             this.hmi$vertexBuilder(renderType).putBakedQuad(posed.last(), quad, quadInstance);
             posed.popPose();
          }
-         index++;
-      }
-   }
-
-   @Unique
-   private void hmi$renderFoil(ItemFeatureRenderer.Submit submit) {
-      FoilType foilType = submit.foilType();
-      if (foilType == FoilType.NONE) {
-         return;
-      }
-
-      PoseStack.Pose basePose = submit.pose();
-      PoseStack.Pose foilDecalPose = null;
-      if (foilType == FoilType.SPECIAL) {
-         foilDecalPose = basePose.copy();
-         if (submit.displayContext() == ItemDisplayContext.GUI) {
-            MatrixUtil.mulComponentWise(foilDecalPose.pose(), 0.5F);
-         } else if (submit.displayContext().firstPerson()) {
-            MatrixUtil.mulComponentWise(foilDecalPose.pose(), 0.75F);
-         }
-      }
-
-      QuadInstance quadInstance = new QuadInstance();
-      quadInstance.setLightCoords(submit.lightCoords());
-      quadInstance.setOverlayCoords(hmi$isHangingSign() ? OverlayTexture.NO_OVERLAY : submit.overlayCoords());
-
-      PoseStack posed = new PoseStack();
-      int index = 0;
-      for (BakedQuad quad : submit.quads()) {
-         RenderType renderType = quad.materialInfo().itemRenderType();
-         // replicates ItemFeatureRenderer.getFoilBuffer / useTransparentGlint
-         boolean transparent = Minecraft.getInstance().gameRenderer.gameRenderState().useShaderTransparency()
-            && renderType.outputTarget() == OutputTarget.ITEM_ENTITY_TARGET;
-         VertexConsumer foilBuffer = this.hmi$vertexBuilder(transparent ? RenderTypes.glintTranslucent() : RenderTypes.glint());
-         if (foilDecalPose != null) {
-            foilBuffer = new SheetedDecalTextureGenerator(foilBuffer, foilDecalPose, 0.0078125F);
-         }
-         posed.pushPose();
-         posed.last().set(basePose);
-         GlobalsStorage.modelPartAnimator.applyPoses(index, posed);
-         foilBuffer.putBakedQuad(posed.last(), quad, quadInstance);
-         posed.popPose();
          index++;
       }
    }
