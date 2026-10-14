@@ -41,6 +41,18 @@ if [ -n "$MC" ]; then
   python3 tools/audit_mixins.py "$MC" mod/src/main/java mod/src/main/resources/holdmyitems.mixins.json > "$out/audit.txt" 2>&1
 fi
 
+# Contents of the jar that will be released.
+J=$(find mod/build/libs -name 'holdmyitems-*.jar' ! -name '*-sources.jar' | head -n 1)
+if [ -n "$J" ]; then
+  {
+    echo "jar: $J ($(stat -c %s "$J") bytes)"
+    echo "mixin classes: $(unzip -l "$J" | grep -c 'com/holdmylua/source/mixin/.*\.class')"
+    unzip -l "$J" | awk '{print $4}' | grep -E 'fabric.mod.json|mixins.json|pack.mcmeta|META-INF/jars/' 
+    echo "--- fabric.mod.json"; unzip -p "$J" fabric.mod.json
+    echo "--- pack.mcmeta"; unzip -p "$J" resourcepacks/pack_test/pack.mcmeta
+  } > "$out/jar-check.txt" 2>&1
+fi
+
 # Where is GLFW (lwjgl) coming from, if anywhere?
 find "$HOME/.gradle" -name 'lwjgl*glfw*.jar' 2>/dev/null > "$out/glfw_jars.txt"
 
