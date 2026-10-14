@@ -29,9 +29,17 @@ jobs:
 
       - name: Build
         working-directory: mod
+        shell: bash
         run: |
+          set -o pipefail
           chmod +x gradlew
-          ./gradlew build --no-daemon
+          if ! ./gradlew build --no-daemon 2>&1 | tee ../build.log; then
+            # Surface the compile errors as a readable annotation on the run.
+            { grep -nE "error:|What went wrong|Could not|FAILED|Caused by" ../build.log | head -60; echo ----; tail -40 ../build.log; } > ../errs.txt
+            msg=$(sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g' ../errs.txt)
+            echo "::error title=Gradle build errors::${msg}"
+            exit 1
+          fi
 
       - name: Pick the jar
         id: jar
