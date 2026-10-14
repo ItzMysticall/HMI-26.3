@@ -1,0 +1,75 @@
+name: Smoke test (launch client)
+
+# Launches the real 26.3 client with the mod under a virtual display and software
+# Vulkan/OpenGL, lets it run for a while, then pushes the log to the `smoke-logs` branch.
+# Not part of the release flow. Start it from the Actions tab or push to branch `smoke-test`.
+on:
+  workflow_dispatch:
+  push:
+    branches: [smoke-test]
+
+permissions:
+  contents: write
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Install virtual display and software GPU drivers
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb mesa-vulkan-drivers libgl1-mesa-dri libglx-mesa0 vulkan-tools \
+            libxrandr2 libxcursor1 libxi6 libxxf86vm1 libopenal1 libxkbcommon0 || true
+          vulkaninfo --summary 2>&1 | head -20 || true
+
+      - name: Run client
+        working-directory: mod
+        shell: bash
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+        run: |
+          set +e
+          chmod +x gradlew
+          # Let the client run up to 6 minutes, then stop it. Reaching the timeout means it stayed up.
+          timeout -k 20 360 xvfb-run -a -s "-screen 0 1280x720x24" ./gradlew runClient --no-daemon > ../client-gradle.log 2>&1
+          echo "exit=$?" > ../client-exit.txt
+          pkill -f minecraft || true
+          true
+
+      - name: Collect logs
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set +e
+          out=$(mktemp -d)
+          cp client-gradle.log client-exit.txt "$out"/ 2>/dev/null
+          cp mod/run/logs/latest.log "$out"/latest.log 2>/dev/null
+          cp -r mod/run/crash-reports "$out"/ 2>/dev/null
+          vulkaninfo --summary > "$out/vulkaninfo.txt" 2>&1
+          {
+            echo "== mod / mixin related lines"
+            grep -a -n -i -E "holdmyitems|mixin|InvalidInjection|InjectionError|apply failed|NoClassDefFound|NoSuchMethod|NoSuchField|Caused by|Exception|FATAL|Crash" "$out/latest.log" | head -150
+            echo "== last 60 log lines"
+            tail -n 60 "$out/latest.log"
+          } > "$out/summary.txt" 2>&1
+          cd "$out" || exit 0
+          git init -q -b smoke-logs
+          git config user.name ci
+          git config user.email ci@users.noreply.github.com
+          git add -A
+          git commit -q -m "smoke test logs for ${GITHUB_SHA}"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push -q -f origin smoke-logs
+          exit 0
