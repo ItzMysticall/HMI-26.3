@@ -1,11 +1,17 @@
 # Hold My Items — Minecraft 26.3 build (unofficial)
 
-> **Download:** grab the jar from the [Releases](../../releases) page and put it in your
-> `mods/` folder. Needs Minecraft **26.3**, Fabric Loader 0.19.3+, Fabric API and Java 25.
+> **Status: does not build on 26.3 yet — no release available.**
+> This is the 26.2 port with its version pins moved to 26.3. Minecraft 26.3 changed the
+> renderer substantially (see "26.3 build errors" below), so the mod fails to compile and
+> needs a real port, not just a version bump. The CI workflow will publish a jar to
+> [Releases](../../releases) automatically once the build passes.
 >
-> **Status:** this is the 26.2 port with its version pins moved to 26.3 (Minecraft, Fabric
-> API, pack format). It has **not been play-tested on 26.3** — if 26.3 changed any rendering
-> code the mod hooks into, it may crash on launch. Please open an issue with the log.
+> **26.3 build errors (from CI):**
+> - GLFW is gone (the client now uses SDL / Vulkan libraries) — `GLFW.glfwGetKey/glfwGetTime` callers
+> - `ItemInHandRenderer` → `FirstPersonHandsAndItemsRenderer` (first-person mixin target)
+> - `com.mojang.blaze3d.pipeline.RenderPipeline`, `BlendFunction`, `DepthStencilState`, ... no longer exist
+> - `OutputTarget` is gone; `PoseStack.mulPose(Quaternionf)` is now `rotate(...)`; `LivingEntity.swing` and
+>   `submitModel` changed signatures
 >
 > The notes below describe the earlier 26.2 port this is based on.
 
