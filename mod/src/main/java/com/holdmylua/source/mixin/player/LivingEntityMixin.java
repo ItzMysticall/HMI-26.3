@@ -8,12 +8,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SwingAnimation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Environment(EnvType.CLIENT)
 @Mixin({LivingEntity.class})
@@ -42,9 +44,6 @@ public abstract class LivingEntityMixin implements LivingEntityAccessor {
    private boolean swingMHand = false;
    @Unique
    private boolean swingOHand = false;
-
-   @Shadow
-   protected abstract int getCurrentSwingDuration();
 
    @Shadow
    public abstract ItemStack getMainHandItem();
@@ -168,10 +167,12 @@ public abstract class LivingEntityMixin implements LivingEntityAccessor {
    }
 
    @Inject(
-      method = {"swing(Lnet/minecraft/world/InteractionHand;Z)V"},
+      method = {"swing(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z"},
       at = {@At("HEAD")}
    )
-   private void onSwingHand(InteractionHand hand, boolean fromServerPlayer, CallbackInfo ci) {
+   // PORT-26.3: swing(InteractionHand, boolean)V became swing(InteractionHand, SwingAnimation, boolean)Z;
+   // getCurrentSwingDuration() (shadowed but never called) no longer exists.
+   private void onSwingHand(InteractionHand hand, SwingAnimation animation, boolean fromServerPlayer, CallbackInfoReturnable<Boolean> cir) {
       if (hand == InteractionHand.OFF_HAND) {
          int duration = GlobalsStorage.itemSwingSpeed.getOrDefault(this.getOffhandItem().getItem().toString(), 10);
          if (!this.offHandSwinging || this.offHandSwingTicks >= duration / 2 || this.offHandSwingTicks < 0) {

@@ -22,3 +22,8 @@ net.minecraft.client.renderer.blockentity.state.BellRenderState
 net.minecraft.client.renderer.state.level.CameraRenderState
 com.mojang.blaze3d.vertex.QuadInstance
 com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
+net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection
+net.minecraft.client.renderer.feature.FeatureRenderDispatcher
+net.minecraft.client.renderer.item.properties.numeric.UseDuration
+net.minecraft.client.renderer.item.properties.conditional.IsUsingItem
+net.minecraft.client.renderer.rendertype.RenderType

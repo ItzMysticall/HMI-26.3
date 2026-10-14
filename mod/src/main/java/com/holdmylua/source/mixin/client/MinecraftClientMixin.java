@@ -7,6 +7,7 @@ import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -45,7 +46,7 @@ public class MinecraftClientMixin {
       method = {"startAttack"},
       at = {@At(
          value = "INVOKE",
-         target = "Lnet/minecraft/client/player/LocalPlayer;swing(Lnet/minecraft/world/InteractionHand;)V"
+         target = "Lnet/minecraft/client/player/LocalPlayer;swing(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z"
       )}
    )
    public void doAttackMix(CallbackInfoReturnable<Boolean> cir) {
@@ -58,10 +59,12 @@ public class MinecraftClientMixin {
       method = {"startUseItem"},
       at = @At(
          value = "INVOKE",
-         target = "Lnet/minecraft/client/player/LocalPlayer;swing(Lnet/minecraft/world/InteractionHand;)V"
+         target = "Lnet/minecraft/client/player/LocalPlayer;swing(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z"
       )
    )
-   private void doItemUse(LocalPlayer instance, InteractionHand hand) {
+   // PORT-26.3: LocalPlayer.swing(InteractionHand)V became swing(InteractionHand, SwingAnimation, boolean)Z
+   // and startUseItem now calls it from three places; all of them are redirected here.
+   private boolean doItemUse(LocalPlayer instance, InteractionHand hand, SwingAnimation animation, boolean fromServer) {
       if (instance instanceof LivingEntityAccessor accessor) {
          if (hand == InteractionHand.MAIN_HAND) {
             accessor.hMI5_0$resetMainHandSwing(true);
@@ -70,6 +73,6 @@ public class MinecraftClientMixin {
          }
       }
 
-      instance.swing(hand);
+      return instance.swing(hand, animation, fromServer);
    }
 }
