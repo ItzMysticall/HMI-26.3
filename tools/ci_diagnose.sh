@@ -29,7 +29,7 @@ fi
 
 # Bytecode probes: class|regex|context-before
 : > "$out/bytecode.txt"
-while IFS='|' read -r cls rx ctx; do
+while IFS='@' read -r cls rx ctx; do
   [ -z "$cls" ] && continue
   case "$cls" in \#*) continue;; esac
   echo "===== $cls  /$rx/" >> "$out/bytecode.txt"
