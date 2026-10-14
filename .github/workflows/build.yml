@@ -31,14 +31,16 @@ jobs:
         working-directory: mod
         shell: bash
         run: |
-          set -o pipefail
+          set +e
           chmod +x gradlew
-          if ! ./gradlew build --no-daemon 2>&1 | tee ../build.log; then
-            # Surface the compile errors as a readable annotation on the run.
-            { grep -nE "error:|What went wrong|Could not|FAILED|Caused by" ../build.log | head -60; echo ----; tail -40 ../build.log; } > ../errs.txt
+          ./gradlew build --no-daemon > ../build.log 2>&1
+          status=$?
+          tail -n 150 ../build.log
+          if [ "$status" -ne 0 ]; then
+            { grep -aE "error:|What went wrong|Could not|FAILED|Caused by" ../build.log | head -n 60; echo ----; tail -n 40 ../build.log; } > ../errs.txt
             msg=$(sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g' ../errs.txt)
             echo "::error title=Gradle build errors::${msg}"
-            exit 1
+            exit "$status"
           fi
 
       - name: Pick the jar
