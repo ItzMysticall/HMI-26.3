@@ -3,3 +3,8 @@ net.minecraft.client.renderer.GameRenderer@prepareFrame|submitHandsWithItems|ren
 net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer@submitArmWithItem@3
 net.minecraft.client.Minecraft@swing@1
 net.minecraft.client.player.LocalPlayer@swing@0
+com.mojang.blaze3d.systems.RenderSystem@getCompiledPipeline|precompilePipeline|compilePipeline@2
+net.minecraft.client.renderer.rendertype.PreparedRenderType@getCompiledPipeline|precompile|compile@3
+net.minecraft.client.renderer.RenderPipelines@register|precompile|PIPELINES_TO_PRECOMPILE|getStaticPipelines@2
+com.mojang.renderpearl.frontend.FrontendGpuDevice@precompilePipeline|compilePipeline|getPipeline|createPipeline@2
+net.minecraft.client.renderer.ShaderManager@precompile|PIPELINES_TO_PRECOMPILE|RenderPipelines@2
