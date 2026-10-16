@@ -117,10 +117,14 @@ public abstract class ItemRendererMixin {
 
       FoilType foilType = submit.foilType();
       PoseStack.Pose foilDecalPose = null;
-      if (foilType == FoilType.SPECIAL) {
+      if (foilType != FoilType.NONE) {
+         // PORT-26.3: putBakedQuadWithGlint dereferences the decal pose for STANDARD glint too
+         // (null crashed on enchanted items), so always build it; only SPECIAL gets scaled below.
          // replicates ItemFeatureRenderer.computeFoilDecalPose
          foilDecalPose = submit.pose().copy();
-         if (submit.displayContext() == ItemDisplayContext.GUI) {
+         if (foilType != FoilType.SPECIAL) {
+            // unscaled
+         } else if (submit.displayContext() == ItemDisplayContext.GUI) {
             MatrixUtil.mulComponentWise(foilDecalPose.pose(), 0.5F);
          } else if (submit.displayContext().firstPerson()) {
             MatrixUtil.mulComponentWise(foilDecalPose.pose(), 0.75F);
