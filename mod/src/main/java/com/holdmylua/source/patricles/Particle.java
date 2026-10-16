@@ -345,6 +345,11 @@ public class Particle {
             case "ADDITIVE" -> ParticleRenderLayers.additiveParticle(this.texture);
             case null, default -> RenderTypes.breezeWind(this.texture, 0.0F, 0.0F);
          };
+         if (renderLayer == null) {
+            // PORT-26.3: additive pipeline still compiling; skip this particle for now.
+            matrices.popPose();
+            return;
+         }
          Matrix4f matrix = matrices.last().pose();
          Vector3f translation = new Vector3f();
          Vector3f scale = new Vector3f();

@@ -9,7 +9,10 @@ import com.mojang.renderpearl.api.pipeline.CompareOp;
 import com.mojang.renderpearl.api.pipeline.DepthStencilState;
 import com.mojang.renderpearl.api.pipeline.PrimitiveTopology;
 import com.mojang.renderpearl.api.pipeline.RenderPipeline;
+import com.mojang.blaze3d.systems.RenderSystem;
 import java.util.function.Function;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import net.minecraft.client.renderer.BindGroupLayouts;
 import net.minecraft.client.renderer.rendertype.RenderSetup;
 import net.minecraft.client.renderer.rendertype.RenderType;
@@ -41,7 +44,40 @@ public class ParticleRenderLayers {
       )
    );
 
+   private static final Logger LOGGER = LoggerFactory.getLogger("holdmyitems");
+   private static long retryAtNanos;
+   private static boolean loggedNotReady;
+
+   /**
+    * Returns the additive particle render type, or null while its pipeline is not compiled yet.
+    * <p>
+    * PORT-26.3: the pipeline is compiled lazily and PipelineCache.get returns null until it is
+    * ready. Vanilla tolerates that, but Iris' RenderSystem.getCompiledPipelineNullable hook
+    * dereferences the result without a null check and crashes the render thread (NPE in
+    * redirectIrisProgram). Asking for the compiled pipeline here, inside a try/catch, both
+    * starts the compile early and keeps the draw from ever reaching that hook unprepared.
+    * It is checked on every call (not cached) because a resource reload rebuilds the cache.
+    */
    public static RenderType additiveParticle(Identifier texture) {
-      return ADDITIVE_PARTICLE_LAYER.apply(texture);
+      return additiveReady() ? ADDITIVE_PARTICLE_LAYER.apply(texture) : null;
+   }
+
+   private static boolean additiveReady() {
+      long now = System.nanoTime();
+      if (now < retryAtNanos) {
+         return false;
+      }
+      try {
+         if (RenderSystem.getCompiledPipelineNullable(ADDITIVE_PARTICLE) != null) {
+            return true;
+         }
+      } catch (Throwable t) {
+         if (!loggedNotReady) {
+            loggedNotReady = true;
+            LOGGER.warn("Additive particle pipeline is not usable yet ({}); skipping those particles until it is", String.valueOf(t));
+         }
+      }
+      retryAtNanos = now + 100_000_000L; // retry in 100 ms
+      return false;
    }
 }
