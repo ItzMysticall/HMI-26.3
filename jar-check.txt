@@ -1,0 +1,54 @@
+jar: mod/build/libs/holdmyitems-5.1.2+26.3.jar (858822 bytes)
+mixin classes: 16
+fabric.mod.json
+holdmyitems.mixins.json
+META-INF/jars/
+META-INF/jars/luaj-jse-3.0.1.jar
+resourcepacks/pack_test/pack.mcmeta
+--- fabric.mod.json
+{
+  "schemaVersion": 1,
+  "id": "holdmyitems",
+  "version": "5.1.2+26.3",
+  "name": "Hold My Items",
+  "description": "Nothing to look at",
+  "authors": [
+    "sapling"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/holdmyitems/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.holdmylua.source.LuaTestHMI"
+    ]
+  },
+  "mixins": [
+    "holdmyitems.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  },
+  "jars": [
+    {
+      "file": "META-INF/jars/luaj-jse-3.0.1.jar"
+    }
+  ]
+}
+--- pack.mcmeta
+{
+    "pack": {
+        "description": "Example animation pack!",
+        "pack_format": 46,
+        "min_format": 46,
+        "max_format": 97,
+        "supported_formats": [46, 64]
+    }
+}

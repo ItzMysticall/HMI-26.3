@@ -1,0 +1,906 @@
+===== net.minecraft.client.renderer.GameRenderer  /prepareFrame|submitHandsWithItems|renderItemInHand|renderLevel|render3dHud|renderAllFeatures/
+METHOD private void renderItemInHand(net.minecraft.client.renderer.state.level.CameraRenderState, net.minecraft.client.renderer.state.level.PlayerRenderState, com.mojang.renderpearl.api.textures.GpuTextureView);
+       175: invokevirtual #884                // Method net/minecraft/client/renderer/FirstPersonHandsAndItemsRenderer.submitHandsWithItems:(FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;
+  --
+       186: invokevirtual #888                // Method net/minecraft/client/renderer/feature/FeatureRenderDispatcher.prepareFrame:(Lnet/minecraft/client/renderer/SubmitNodeStorage;)Lnet/minecraft/client/renderer/feature/FeatureRe
+  --
+       234: invokestatic  #933                // Method net/minecraft/client/renderer/feature/FeatureRenderDispatcher.renderAllFeatures:(Lcom/mojang/renderpearl/api/commands/RenderPass;Lnet/minecraft/client/renderer/feature/Featur
+  --
+METHOD public void render();
+       261: invokevirtual #1182               // Method renderLevel:()V
+  --
+METHOD public void renderLevel();
+       396: invokevirtual #1514               // Method render3dHud:(Lnet/minecraft/client/renderer/state/level/CameraRenderState;Lnet/minecraft/client/renderer/state/level/PlayerRenderState;Lnet/minecraft/client/renderer/state/Op
+  --
+METHOD private void render3dHud(net.minecraft.client.renderer.state.level.CameraRenderState, net.minecraft.client.renderer.state.level.PlayerRenderState, net.minecraft.client.renderer.state.OptionsRenderState, boolean);
+       141: invokevirtual #1549               // Method renderItemInHand:(Lnet/minecraft/client/renderer/state/level/CameraRenderState;Lnet/minecraft/client/renderer/state/level/PlayerRenderState;Lcom/mojang/renderpearl/api/textur
+  --
+       195: invokevirtual #888                // Method net/minecraft/client/renderer/feature/FeatureRenderDispatcher.prepareFrame:(Lnet/minecraft/client/renderer/SubmitNodeStorage;)Lnet/minecraft/client/renderer/feature/FeatureRe
+  --
+       252: invokestatic  #933                // Method net/minecraft/client/renderer/feature/FeatureRenderDispatcher.renderAllFeatures:(Lcom/mojang/renderpearl/api/commands/RenderPass;Lnet/minecraft/client/renderer/feature/Featur
+  --
+===== net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer  /submitArmWithItem/
+METHOD public void submitHandsWithItems(float, com.mojang.blaze3d.vertex.PoseStack, net.minecraft.client.renderer.SubmitNodeCollector, net.minecraft.client.renderer.state.level.PlayerRenderState, net.minecraft.client.renderer.state.level
+       157: aload         4
+       159: getfield      #199                // Field net/minecraft/client/renderer/state/level/PlayerRenderState.avatarRenderState:Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;
+       162: getfield      #515                // Field net/minecraft/client/renderer/entity/state/AvatarRenderState.lightCoords:I
+       165: invokevirtual #519                // Method submitArmWithItem:(Lnet/minecraft/client/renderer/state/level/PlayerRenderState;Lnet/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState;FFLnet/minecraf
+  --
+       241: aload         4
+       243: getfield      #199                // Field net/minecraft/client/renderer/state/level/PlayerRenderState.avatarRenderState:Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;
+       246: getfield      #515                // Field net/minecraft/client/renderer/entity/state/AvatarRenderState.lightCoords:I
+       249: invokevirtual #519                // Method submitArmWithItem:(Lnet/minecraft/client/renderer/state/level/PlayerRenderState;Lnet/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState;FFLnet/minecraf
+  --
+===== net.minecraft.client.Minecraft  /swing/
+METHOD private void continueAttack(boolean);
+       138: iconst_0
+       139: invokevirtual #3462               // Method net/minecraft/client/player/LocalPlayer.swing:(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z
+  --
+METHOD private boolean startAttack();
+       381: iconst_0
+       382: invokevirtual #3462               // Method net/minecraft/client/player/LocalPlayer.swing:(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z
+  --
+METHOD private void startUseItem();
+       229: aload         10
+       231: invokevirtual #3613               // Method net/minecraft/world/InteractionResult$Success.swingSource:()Lnet/minecraft/world/InteractionResult$SwingSource;
+  --
+       248: iconst_0
+       249: invokevirtual #3462               // Method net/minecraft/client/player/LocalPlayer.swing:(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z
+  --
+       305: aload         10
+       307: invokevirtual #3613               // Method net/minecraft/world/InteractionResult$Success.swingSource:()Lnet/minecraft/world/InteractionResult$SwingSource;
+  --
+       324: iconst_0
+       325: invokevirtual #3462               // Method net/minecraft/client/player/LocalPlayer.swing:(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z
+  --
+       414: aload         8
+       416: invokevirtual #3613               // Method net/minecraft/world/InteractionResult$Success.swingSource:()Lnet/minecraft/world/InteractionResult$SwingSource;
+  --
+       433: iconst_0
+       434: invokevirtual #3462               // Method net/minecraft/client/player/LocalPlayer.swing:(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z
+  --
+===== net.minecraft.client.player.LocalPlayer  /swing/
+===== com.mojang.blaze3d.systems.RenderSystem  /getCompiledPipeline|precompilePipeline|compilePipeline/
+METHOD public static com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline getCompiledPipeline(com.mojang.renderpearl.api.pipeline.RenderPipeline);
+    Code:
+         0: aload_0
+         1: invokestatic  #120                // Method getCompiledPipelineNullable:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;
+  --
+===== net.minecraft.client.renderer.rendertype.PreparedRenderType  /getCompiledPipeline|precompile|compile/
+METHOD private void draw(net.minecraft.client.renderer.StagedVertexBuffer$ExecuteInfo, com.mojang.renderpearl.api.commands.RenderPass, com.mojang.renderpearl.api.pipeline.RenderPipeline);
+        16: astore        4
+        18: aload_2
+        19: aload_3
+        20: invokestatic  #125                // Method com/mojang/blaze3d/systems/RenderSystem.getCompiledPipeline:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;
+  --
+===== net.minecraft.client.renderer.RenderPipelines  /register|precompile|PIPELINES_TO_PRECOMPILE|getStaticPipelines/
+METHOD private static com.mojang.renderpearl.api.pipeline.ColorTargetState lambda$static$0();
+      2356: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      2359: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2362: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2390: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      2393: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2396: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2424: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      2427: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2430: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2464: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      2467: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2470: invokestatic  #721                // Method registerOptional:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2504: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      2507: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2510: invokestatic  #721                // Method registerOptional:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2546: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      2549: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2552: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2588: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      2591: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2594: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2630: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      2633: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2636: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2679: invokevirtual #550                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withShaderDefine:(Ljava/lang/String;F)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      2682: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2685: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2728: invokevirtual #550                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withShaderDefine:(Ljava/lang/String;F)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      2731: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2734: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2796: invokevirtual #766                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withAccumulateModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      2799: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      2802: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      2871: invokevirtual #766                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withAccumulateModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      2874: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      2877: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      2926: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      2929: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      2932: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      2988: invokevirtual #766                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withAccumulateModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      2991: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      2994: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      3046: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      3049: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3052: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3118: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      3121: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3124: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3183: invokevirtual #616                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withCull:(Z)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      3186: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3189: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3223: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      3226: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3229: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3263: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      3266: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3269: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3311: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      3314: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3317: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3369: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      3372: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3375: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3427: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      3430: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3433: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3497: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      3500: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3503: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3562: invokevirtual #616                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withCull:(Z)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      3565: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3568: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3602: invokevirtual #766                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withAccumulateModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      3605: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      3608: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      3681: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      3684: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3687: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3721: invokevirtual #766                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withAccumulateModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      3724: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      3727: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      3776: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      3779: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3782: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3812: invokevirtual #766                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withAccumulateModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      3815: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      3818: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      3864: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      3867: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3870: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3925: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      3928: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      3931: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      3996: invokevirtual #616                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withCull:(Z)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      3999: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4002: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4054: invokevirtual #766                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withAccumulateModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      4057: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      4060: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      4187: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      4190: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4193: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4221: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      4224: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      4227: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      4282: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      4285: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4288: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4316: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      4319: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      4322: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      4421: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      4424: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4427: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4449: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      4452: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      4455: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      4563: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      4566: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4569: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4609: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      4612: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4615: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4651: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      4654: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4657: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4699: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      4702: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4705: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4754: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      4757: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4760: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4803: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      4806: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4809: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4839: invokevirtual #766                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withAccumulateModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      4842: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      4845: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      4894: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      4897: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4900: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4956: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      4959: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      4962: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      4992: invokevirtual #766                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withAccumulateModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      4995: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      4998: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      5035: invokevirtual #766                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withAccumulateModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      5038: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      5041: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      5069: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      5072: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5075: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5124: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      5127: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5130: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5152: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      5155: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      5158: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      5227: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      5230: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5233: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5275: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      5278: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5281: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5303: invokevirtual #693                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withLocation:(Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      5306: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5309: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5411: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      5414: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5417: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5480: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      5483: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5486: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5508: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      5511: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      5514: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      5549: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      5552: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5555: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5577: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      5580: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      5583: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      5605: invokevirtual #693                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withLocation:(Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      5608: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5611: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5652: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      5655: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5658: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5686: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      5689: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      5692: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      5720: invokevirtual #320                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withShaderDefine:(Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      5723: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5726: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5779: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      5782: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5785: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5807: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      5810: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      5813: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      5872: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      5875: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5878: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      5906: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      5909: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      5912: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      5959: invokevirtual #680                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Ljava/util/Optional;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      5962: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      5965: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6011: invokevirtual #680                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Ljava/util/Optional;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      6014: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6017: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6052: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      6055: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6058: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6086: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      6089: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      6092: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      6127: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      6130: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6133: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6161: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      6164: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      6167: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      6197: invokevirtual #388                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withShaderDefine:(Ljava/lang/String;I)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      6200: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6203: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6233: invokevirtual #388                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withShaderDefine:(Ljava/lang/String;I)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      6236: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6239: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6265: invokevirtual #616                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withCull:(Z)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      6268: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6271: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6293: invokevirtual #693                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withLocation:(Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      6296: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6299: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6329: invokevirtual #1155               // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.withDepthBoundsModifier:(Ljava/util/function/Consumer;)Lnet/minecraft/client/renderer/oit/OitPipelineSet$Builder;
+      6332: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      6335: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      6361: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      6364: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      6367: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      6395: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      6398: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6401: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6436: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      6439: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6442: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6491: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      6494: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6497: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6519: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      6522: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      6525: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      6569: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      6572: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6575: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6609: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      6612: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6615: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6668: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      6671: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6674: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6696: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      6699: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      6702: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      6724: invokevirtual #693                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withLocation:(Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      6727: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6730: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6752: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      6755: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      6758: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      6784: invokevirtual #616                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withCull:(Z)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      6787: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6790: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6812: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      6815: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      6818: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      6857: invokevirtual #486                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withPrimitiveTopology:(Lcom/mojang/renderpearl/api/pipeline/PrimitiveTopology;)Lcom/mojang/renderpearl/api/pipeline
+      6860: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      6863: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      6898: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      6901: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      6904: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      7006: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      7009: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7012: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7101: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      7104: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      7107: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      7135: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      7138: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7141: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7176: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      7179: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7182: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7204: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      7207: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      7210: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      7246: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      7249: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7252: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7278: invokestatic  #752                // Method net/minecraft/client/renderer/oit/OitPipelineSet.builder:(Ljava/lang/String;Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;)Lnet/minecraft/client/renderer/oit/Oi
+      7281: invokevirtual #769                // Method net/minecraft/client/renderer/oit/OitPipelineSet$Builder.build:()Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+      7284: invokestatic  #771                // Method register:(Lnet/minecraft/client/renderer/oit/OitPipelineSet;)Lnet/minecraft/client/renderer/oit/OitPipelineSet;
+  --
+      7337: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      7340: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7343: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7421: invokevirtual #486                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withPrimitiveTopology:(Lcom/mojang/renderpearl/api/pipeline/PrimitiveTopology;)Lcom/mojang/renderpearl/api/pipeline
+      7424: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7427: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7499: invokevirtual #486                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withPrimitiveTopology:(Lcom/mojang/renderpearl/api/pipeline/PrimitiveTopology;)Lcom/mojang/renderpearl/api/pipeline
+      7502: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7505: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7577: invokevirtual #486                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withPrimitiveTopology:(Lcom/mojang/renderpearl/api/pipeline/PrimitiveTopology;)Lcom/mojang/renderpearl/api/pipeline
+      7580: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7583: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7661: invokevirtual #486                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withPrimitiveTopology:(Lcom/mojang/renderpearl/api/pipeline/PrimitiveTopology;)Lcom/mojang/renderpearl/api/pipeline
+      7664: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7667: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7689: invokevirtual #693                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withLocation:(Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      7692: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7695: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7730: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      7733: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7736: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7771: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      7774: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7777: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7799: invokevirtual #693                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withLocation:(Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      7802: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7805: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7840: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      7843: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7846: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7868: invokevirtual #693                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withLocation:(Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      7871: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7874: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7896: invokevirtual #693                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withLocation:(Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      7899: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7902: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7942: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      7945: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7948: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      7983: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      7986: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      7989: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8040: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      8043: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8046: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8081: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      8084: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8087: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8132: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      8135: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8138: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8205: invokevirtual #486                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withPrimitiveTopology:(Lcom/mojang/renderpearl/api/pipeline/PrimitiveTopology;)Lcom/mojang/renderpearl/api/pipeline
+      8208: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8211: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8263: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      8266: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8269: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8340: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      8343: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8346: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8368: invokevirtual #693                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withLocation:(Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      8371: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8374: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8400: invokevirtual #616                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withCull:(Z)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline$Builder;
+      8403: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8406: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8458: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      8461: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8464: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8541: invokevirtual #300                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withBindGroupLayout:(Lcom/mojang/renderpearl/api/pipeline/BindGroupLayout;)Lcom/mojang/renderpearl/api/pipeline/Ren
+      8544: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8547: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8581: invokevirtual #300                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withBindGroupLayout:(Lcom/mojang/renderpearl/api/pipeline/BindGroupLayout;)Lcom/mojang/renderpearl/api/pipeline/Ren
+      8584: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8587: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8651: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      8654: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8657: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8733: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      8736: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8739: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8816: invokevirtual #413                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withColorTargetState:(Lcom/mojang/renderpearl/api/pipeline/ColorTargetState;)Lcom/mojang/renderpearl/api/pipeline/R
+      8819: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8822: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8882: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      8885: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8888: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      8975: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      8978: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      8981: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+      9035: invokevirtual #281                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.withDepthStencilState:(Lcom/mojang/renderpearl/api/pipeline/DepthStencilState;)Lcom/mojang/renderpearl/api/pipeline
+      9038: invokevirtual #696                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder.build:()Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+      9041: invokestatic  #698                // Method register:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+  --
+===== com.mojang.renderpearl.frontend.FrontendGpuDevice  /precompilePipeline|compilePipeline|getPipeline|createPipeline/
+METHOD public java.util.concurrent.CompletableFuture<com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline$Pending> compilePipeline(com.mojang.renderpearl.api.pipeline.RenderPipeline, com.mojang.renderpearl.api.pipeline.ShaderSource
+         5: aload_2
+         6: aload_3
+         7: invokevirtual #279                // Method com/mojang/renderpearl/frontend/shaders/PipelineBuilder.compilePipeline:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lcom/mojang/renderpearl/api/pipeline/ShaderSource
+  --
+===== net.minecraft.client.renderer.ShaderManager  /precompile|PIPELINES_TO_PRECOMPILE|RenderPipelines/
+METHOD private static java.util.concurrent.CompletionStage lambda$reload$1(com.mojang.renderpearl.api.device.GpuDevice, java.util.concurrent.Executor, java.util.concurrent.Executor, net.minecraft.client.renderer.ShaderManager$Configs);
+    Code:
+         0: invokestatic  #744                // Method net/minecraft/client/renderer/RenderPipelines.requiredPipelines:()Ljava/util/List;
+  --
+         0: invokestatic  #744                // Method net/minecraft/client/renderer/RenderPipelines.requiredPipelines:()Ljava/util/List;
+         3: astore        4
+         5: invokestatic  #746                // Method net/minecraft/client/renderer/RenderPipelines.optionalPipelines:()Ljava/util/List;
+  --
+===== com.mojang.blaze3d.pipeline.PipelineCache  /./
+METHOD public com.mojang.blaze3d.pipeline.PipelineCache(com.mojang.renderpearl.api.device.GpuDevice, com.mojang.renderpearl.api.pipeline.ShaderSource);
+    Code:
+  --
+         0: aload_0
+  --
+         1: invokespecial #29                 // Method java/lang/Object."<init>":()V
+  --
+         4: aload_0
+  --
+         5: new           #31                 // class it/unimi/dsi/fastutil/objects/Reference2ReferenceOpenHashMap
+  --
+         8: dup
+  --
+         9: invokespecial #32                 // Method it/unimi/dsi/fastutil/objects/Reference2ReferenceOpenHashMap."<init>":()V
+  --
+        12: putfield      #34                 // Field cache:Ljava/util/Map;
+  --
+        15: aload_0
+  --
+        16: aload_1
+  --
+        17: putfield      #36                 // Field device:Lcom/mojang/renderpearl/api/device/GpuDevice;
+  --
+        20: aload_0
+  --
+        21: aload_2
+  --
+        22: putfield      #38                 // Field shaderSource:Lcom/mojang/renderpearl/api/pipeline/ShaderSource;
+  --
+        25: return
+  --
+METHOD public void insert(com.mojang.renderpearl.api.pipeline.RenderPipeline, com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline);
+    Code:
+  --
+         0: aload_0
+  --
+         1: getfield      #34                 // Field cache:Ljava/util/Map;
+  --
+         4: aload_1
+  --
+         5: aload_2
+  --
+         6: invokeinterface #50,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  --
+        11: pop
+  --
+        12: return
+  --
+METHOD public com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline get(com.mojang.renderpearl.api.pipeline.RenderPipeline);
+    Code:
+  --
+         0: aload_0
+  --
+         1: getfield      #34                 // Field cache:Ljava/util/Map;
+  --
+         4: aload_1
+  --
+         5: invokeinterface #58,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+  --
+        10: checkcast     #11                 // class com/mojang/renderpearl/api/pipeline/CompiledRenderPipeline
+  --
+        13: astore_2
+  --
+        14: aload_2
+  --
+        15: ifnull        20
+  --
+        18: aload_2
+  --
+        19: areturn
+  --
+        20: aload_0
+  --
+        21: getfield      #36                 // Field device:Lcom/mojang/renderpearl/api/device/GpuDevice;
+  --
+        24: aload_1
+  --
+        25: aload_0
+  --
+        26: getfield      #38                 // Field shaderSource:Lcom/mojang/renderpearl/api/pipeline/ShaderSource;
+  --
+        29: invokestatic  #64                 // Method net/minecraft/util/Util.backgroundExecutor:()Lnet/minecraft/TracingExecutor;
+  --
+        32: invokeinterface #70,  4           // InterfaceMethod com/mojang/renderpearl/api/device/GpuDevice.compilePipeline:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lcom/mojang/renderpearl/api/pipeline/ShaderSource;Lj
+  --
+        37: invokevirtual #76                 // Method java/util/concurrent/CompletableFuture.join:()Ljava/lang/Object;
+  --
+        40: checkcast     #9                  // class com/mojang/renderpearl/api/pipeline/CompiledRenderPipeline$Pending
+  --
+        43: invokeinterface #80,  1           // InterfaceMethod com/mojang/renderpearl/api/pipeline/CompiledRenderPipeline$Pending.finishCompile:()Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;
+  --
+        48: astore_3
+  --
+        49: aload_3
+  --
+        50: ifnonnull     55
+  --
+        53: aconst_null
+  --
+        54: areturn
+  --
+        55: aload_0
+  --
+        56: getfield      #34                 // Field cache:Ljava/util/Map;
+  --
+        59: aload_1
+  --
+        60: aload_3
+  --
+        61: invokeinterface #50,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  --
+        66: pop
+  --
+        67: aload_3
+  --
+        68: areturn
+  --
+METHOD public void clear();
+    Code:
+  --
+         0: aload_0
+  --
+         1: getfield      #34                 // Field cache:Ljava/util/Map;
+  --
+         4: invokeinterface #87,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+  --
+         9: invokedynamic #108,  0            // InvokeDynamic #0:accept:()Ljava/util/function/Consumer;
+  --
+        14: invokeinterface #114,  2          // InterfaceMethod java/util/Collection.forEach:(Ljava/util/function/Consumer;)V
+  --
+        19: aload_0
+  --
+        20: getfield      #34                 // Field cache:Ljava/util/Map;
+  --
+        23: invokeinterface #116,  1          // InterfaceMethod java/util/Map.clear:()V
+  --
+        28: return
+  --
+METHOD public void close();
+    Code:
+  --
+         0: aload_0
+  --
+         1: invokevirtual #117                // Method clear:()V
+  --
+         4: aload_0
+  --
+         5: getfield      #38                 // Field shaderSource:Lcom/mojang/renderpearl/api/pipeline/ShaderSource;
+  --
+         8: invokeinterface #120,  1          // InterfaceMethod com/mojang/renderpearl/api/pipeline/ShaderSource.close:()V
+  --
+        13: return
+  --
+}
+  --
+===== com.mojang.blaze3d.systems.RenderSystem  /fallbackPipelineCache|currentPipelineCache|getCompiledPipelineNullable/
+METHOD public static void setFallbackPipelineCache(com.mojang.blaze3d.pipeline.PipelineCache);
+    Code:
+         0: getstatic     #92                 // Field fallbackPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+        16: aload_0
+        17: putstatic     #92                 // Field fallbackPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+METHOD public static com.mojang.blaze3d.pipeline.PipelineCache setCurrentPipelineCache(com.mojang.blaze3d.pipeline.PipelineCache);
+    Code:
+         0: getstatic     #103                // Field currentPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+         4: aload_0
+         5: putstatic     #103                // Field currentPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+METHOD public static com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline getCompiledPipelineNullable(com.mojang.renderpearl.api.pipeline.RenderPipeline);
+    Code:
+         0: getstatic     #103                // Field currentPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+         3: ifnull        20
+         6: getstatic     #103                // Field currentPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+        19: areturn
+        20: getstatic     #92                 // Field fallbackPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+        35: athrow
+        36: getstatic     #92                 // Field fallbackPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+METHOD public static com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline getCompiledPipeline(com.mojang.renderpearl.api.pipeline.RenderPipeline);
+         0: aload_0
+         1: invokestatic  #120                // Method getCompiledPipelineNullable:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;
+  --
+METHOD public static void shutdownRenderer();
+    Code:
+         0: getstatic     #103                // Field currentPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+         3: ifnull        12
+         6: getstatic     #103                // Field currentPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+         9: invokevirtual #381                // Method com/mojang/blaze3d/pipeline/PipelineCache.close:()V
+        12: getstatic     #92                 // Field fallbackPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+        15: ifnull        24
+        18: getstatic     #92                 // Field fallbackPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+===== net.minecraft.client.renderer.rendertype.PreparedRenderType  /getCompiledPipeline/
+METHOD private void draw(net.minecraft.client.renderer.StagedVertexBuffer$ExecuteInfo, com.mojang.renderpearl.api.commands.RenderPass, com.mojang.renderpearl.api.pipeline.RenderPipeline);
+         7: invokeinterface #115,  2          // InterfaceMethod com/mojang/renderpearl/api/commands/RenderPass.pushDebugGroup:(Ljava/util/function/Supplier;)V
+        12: aload_1
+        13: invokevirtual #119                // Method net/minecraft/client/renderer/StagedVertexBuffer$ExecuteInfo.indexBuffer:()Lcom/mojang/renderpearl/api/buffers/GpuBuffer;
+        16: astore        4
+        18: aload_2
+        19: aload_3
+        20: invokestatic  #125                // Method com/mojang/blaze3d/systems/RenderSystem.getCompiledPipeline:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;
+  --
+===== net.minecraft.client.renderer.ShaderManager  /requiredPipelines|optionalPipelines|PipelineCache/
+METHOD private void apply(com.mojang.renderpearl.api.device.GpuDevice, net.minecraft.client.renderer.ShaderManager$PendingResults);
+        16: dup
+        17: invokespecial #527                // Method java/util/ArrayList."<init>":()V
+        20: astore        4
+        22: new           #529                // class com/mojang/blaze3d/pipeline/PipelineCache
+  --
+        26: aload_1
+        27: aload_2
+        28: getfield      #524                // Field net/minecraft/client/renderer/ShaderManager$PendingResults.configs:Lnet/minecraft/client/renderer/ShaderManager$Configs;
+        31: invokespecial #532                // Method com/mojang/blaze3d/pipeline/PipelineCache."<init>":(Lcom/mojang/renderpearl/api/device/GpuDevice;Lcom/mojang/renderpearl/api/pipeline/ShaderSource;)V
+  --
+        31: invokespecial #532                // Method com/mojang/blaze3d/pipeline/PipelineCache."<init>":(Lcom/mojang/renderpearl/api/device/GpuDevice;Lcom/mojang/renderpearl/api/pipeline/ShaderSource;)V
+        34: astore        5
+        36: aload         5
+        38: invokevirtual #535                // Method com/mojang/blaze3d/pipeline/PipelineCache.clear:()V
+  --
+        42: istore        6
+        44: iload         6
+        46: aload_2
+        47: getfield      #540                // Field net/minecraft/client/renderer/ShaderManager$PendingResults.requiredPipelines:Ljava/util/List;
+  --
+        50: invokeinterface #544,  1          // InterfaceMethod java/util/List.size:()I
+        55: if_icmpge     126
+        58: aload_2
+        59: getfield      #540                // Field net/minecraft/client/renderer/ShaderManager$PendingResults.requiredPipelines:Ljava/util/List;
+  --
+        95: aload         5
+        97: aload         7
+        99: aload         8
+       101: invokevirtual #556                // Method com/mojang/blaze3d/pipeline/PipelineCache.insert:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;)V
+  --
+       176: invokeinterface #572,  1          // InterfaceMethod com/mojang/renderpearl/api/pipeline/CompiledRenderPipeline.close:()V
+       181: goto          147
+       184: aload         5
+       186: invokevirtual #573                // Method com/mojang/blaze3d/pipeline/PipelineCache.close:()V
+  --
+       234: istore        6
+       236: iload         6
+       238: aload_2
+       239: getfield      #612                // Field net/minecraft/client/renderer/ShaderManager$PendingResults.optionalPipelines:Ljava/util/List;
+  --
+       242: invokeinterface #544,  1          // InterfaceMethod java/util/List.size:()I
+       247: if_icmpge     318
+       250: aload_2
+       251: getfield      #612                // Field net/minecraft/client/renderer/ShaderManager$PendingResults.optionalPipelines:Ljava/util/List;
+  --
+       287: aload         5
+       289: aload         7
+       291: aload         8
+       293: invokevirtual #556                // Method com/mojang/blaze3d/pipeline/PipelineCache.insert:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;)V
+  --
+       375: aload_3
+       376: putfield      #109                // Field postChains:Lnet/minecraft/client/renderer/ShaderManager$PostChainCache;
+       379: aload         5
+       381: invokestatic  #628                // Method com/mojang/blaze3d/systems/RenderSystem.setCurrentPipelineCache:(Lcom/mojang/blaze3d/pipeline/PipelineCache;)Lcom/mojang/blaze3d/pipeline/PipelineCache;
+  --
+       386: aload         6
+       388: ifnull        396
+       391: aload         6
+       393: invokevirtual #573                // Method com/mojang/blaze3d/pipeline/PipelineCache.close:()V
+  --
+METHOD private static java.util.concurrent.CompletionStage lambda$reload$1(com.mojang.renderpearl.api.device.GpuDevice, java.util.concurrent.Executor, java.util.concurrent.Executor, net.minecraft.client.renderer.ShaderManager$Configs);
+    Code:
+         0: invokestatic  #744                // Method net/minecraft/client/renderer/RenderPipelines.requiredPipelines:()Ljava/util/List;
+  --
+    Code:
+         0: invokestatic  #744                // Method net/minecraft/client/renderer/RenderPipelines.requiredPipelines:()Ljava/util/List;
+         3: astore        4
+         5: invokestatic  #746                // Method net/minecraft/client/renderer/RenderPipelines.optionalPipelines:()Ljava/util/List;
+  --
