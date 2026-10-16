@@ -8,3 +8,7 @@ net.minecraft.client.renderer.rendertype.PreparedRenderType@getCompiledPipeline|
 net.minecraft.client.renderer.RenderPipelines@register|precompile|PIPELINES_TO_PRECOMPILE|getStaticPipelines@2
 com.mojang.renderpearl.frontend.FrontendGpuDevice@precompilePipeline|compilePipeline|getPipeline|createPipeline@2
 net.minecraft.client.renderer.ShaderManager@precompile|PIPELINES_TO_PRECOMPILE|RenderPipelines@2
+com.mojang.blaze3d.pipeline.PipelineCache@.@0
+com.mojang.blaze3d.systems.RenderSystem@fallbackPipelineCache|currentPipelineCache|getCompiledPipelineNullable@1
+net.minecraft.client.renderer.rendertype.PreparedRenderType@getCompiledPipeline@6
+net.minecraft.client.renderer.ShaderManager@requiredPipelines|optionalPipelines|PipelineCache@3
